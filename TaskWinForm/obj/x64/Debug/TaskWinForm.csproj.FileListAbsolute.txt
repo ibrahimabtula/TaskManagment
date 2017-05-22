@@ -1,0 +1,16 @@
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x64\Debug\TaskWinForm.exe.config
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x64\Debug\TaskWinForm.exe
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x64\Debug\TaskWinForm.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x64\Debug\Task.Core.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x64\Debug\Task.DAL.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x64\Debug\Task.Service.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x64\Debug\Task.Core.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x64\Debug\Task.DAL.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x64\Debug\Task.Service.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x64\Debug\TaskWinForm.csprojResolveAssemblyReference.cache
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x64\Debug\TaskWinForm.Form1.resources
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x64\Debug\TaskWinForm.Properties.Resources.resources
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x64\Debug\TaskWinForm.TaskListControl.resources
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x64\Debug\TaskWinForm.csproj.GenerateResource.Cache
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x64\Debug\TaskWinForm.exe
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x64\Debug\TaskWinForm.pdb

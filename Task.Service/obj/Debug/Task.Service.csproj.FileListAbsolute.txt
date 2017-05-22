@@ -1,0 +1,9 @@
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\bin\Debug\Task.Service.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\bin\Debug\Task.Service.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\bin\Debug\Task.Core.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\bin\Debug\Task.DAL.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\bin\Debug\Task.Core.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\bin\Debug\Task.DAL.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\obj\Debug\Task.Service.csprojResolveAssemblyReference.cache
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\obj\Debug\Task.Service.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\obj\Debug\Task.Service.pdb

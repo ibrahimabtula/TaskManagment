@@ -1,0 +1,5 @@
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Core\bin\Debug\Task.Core.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Core\bin\Debug\Task.Core.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Core\obj\Debug\Task.Core.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Core\obj\Debug\Task.Core.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Core\obj\Debug\Task.Core.csprojResolveAssemblyReference.cache

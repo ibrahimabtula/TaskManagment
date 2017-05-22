@@ -1,0 +1,4 @@
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Core\bin\x86\Debug\Task.Core.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Core\bin\x86\Debug\Task.Core.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Core\obj\x86\Debug\Task.Core.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.Core\obj\x86\Debug\Task.Core.pdb

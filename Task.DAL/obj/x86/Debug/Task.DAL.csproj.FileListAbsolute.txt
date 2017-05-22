@@ -1,0 +1,7 @@
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DAL\bin\x86\Debug\Task.DAL.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DAL\bin\x86\Debug\Task.DAL.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DAL\bin\x86\Debug\Task.Core.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DAL\bin\x86\Debug\Task.Core.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DAL\obj\x86\Debug\Task.DAL.csprojResolveAssemblyReference.cache
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DAL\obj\x86\Debug\Task.DAL.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DAL\obj\x86\Debug\Task.DAL.pdb
