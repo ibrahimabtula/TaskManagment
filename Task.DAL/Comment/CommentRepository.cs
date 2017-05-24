@@ -116,8 +116,8 @@ WHERE 1 = 1");
                         comment.CommentTypeID = reader.GetInt32(2);
                         comment.ReminderDate = reader.GetNullabelDateTime(3);
                         comment.TaskID = reader.GetInt32(4);
-                        comment.Text = reader.GetString(5);
-                        comment.CommentTypeName = reader.GetString(6);
+                        comment.Text = reader.GetNullabelString(5);
+                        comment.CommentTypeName = reader.GetNullabelString(6);
 
                         comments.Add(comment);
                     }
@@ -202,7 +202,11 @@ SELECT @@IDENTITY
 
             Parameters.AddWithValue("TypeID", comment.CommentTypeID);
             Parameters.AddWithValue("TaskID", comment.TaskID);
-            Parameters.AddWithValue("Text", comment.Text);
+
+            if(comment.Text != null)
+                Parameters.AddWithValue("Text", comment.Text);
+            else
+                Parameters.AddWithValue("Text", DBNull.Value);
         }
 
         public void ExecuteDelete(int ID, SqlTransaction transaction)

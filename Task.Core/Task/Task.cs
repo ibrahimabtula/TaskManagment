@@ -177,6 +177,11 @@ namespace Task.Core
 
                 foreach (Comment comment in Comments)
                     comment.Update(t);
+
+                foreach (Comment comment in Comments.DeleteComments)
+                    comment.Update(t);
+
+                Comments.DeleteComments.Clear();
             });
         }
 

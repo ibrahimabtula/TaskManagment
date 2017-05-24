@@ -6,7 +6,8 @@ using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using Task.Core;
-
+using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Base;
 
 namespace TaskWinForm
 {
@@ -80,6 +81,43 @@ namespace TaskWinForm
             col.FieldName = nameof(Task.Core.Comment.Text);
             col.Caption = "Comment";
             gvComments.Columns.Add(col);
+
+            col = new GridColumn();
+            var repItem = new RepositoryItemButtonEdit();
+            repItem.Buttons.Clear();
+            var eb = new EditorButton(ButtonPredefines.Delete);
+            eb.Width = 20;
+            repItem.Buttons.Add(eb);
+            repItem.TextEditStyle = TextEditStyles.DisableTextEditor;
+            repItem.ButtonClick += RepItem_ButtonClick;
+            col.ShowButtonMode = ShowButtonModeEnum.ShowAlways;            
+            col.ColumnEdit = repItem;
+            col.Visible = true;
+            col.Width = 30;
+            col.OptionsColumn.AllowEdit = true;
+            col.FieldName = "BtnDelete";
+            col.Caption = " ";
+            gvComments.Columns.Add(col);
+        }
+
+        private void RepItem_ButtonClick(object sender, ButtonPressedEventArgs e)
+        {
+            var comment = gvComments.GetRow(gvComments.FocusedRowHandle) as Task.Core.Comment;
+            if (comment != null)
+            {
+                var result = XtraMessageBox.Show(
+                    this,
+                    "Delete comment?",
+                    "Task management",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    comment.MarkDeleted();
+                    _task.Comments.Remove(comment);
+                }
+            }
         }
 
         private void SetDatabindigs()

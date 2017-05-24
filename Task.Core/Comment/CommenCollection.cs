@@ -1,10 +1,25 @@
 ﻿
+using System.Collections.Generic;
 using Task.DAL;
 
 namespace Task.Core
 {
     public class CommentCollection : BusinessCollectionBase<Comment>
     {
+
+        public List<Comment> DeleteComments { get; set; }
+
+        public CommentCollection()
+        {
+            DeleteComments = new List<Comment>();
+        }
+
+        public void Remove(Comment comment)
+        {
+            DeleteComments.Add(comment);
+            base.Remove(comment);
+        }
+
 
         public static CommentCollection GetByTaskID(int TaskID)
         {

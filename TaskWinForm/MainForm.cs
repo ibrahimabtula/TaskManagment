@@ -45,7 +45,6 @@ namespace TaskWinForm
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             var task = new Task.Core.Task();
-            task.MarkOld();
 
             using (var frm = new TaskAddEditForm(task))
             {
