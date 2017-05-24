@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.Service", "Task.Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskWinForm", "TaskWinForm\TaskWinForm.csproj", "{225B36D4-626F-41DB-BC01-8CD165C66F2A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task.DTO", "Task.DTO\Task.DTO.csproj", "{8C38B471-97B1-43AF-B82C-41808EF08A24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{225B36D4-626F-41DB-BC01-8CD165C66F2A}.Release|x64.Build.0 = Release|Any CPU
 		{225B36D4-626F-41DB-BC01-8CD165C66F2A}.Release|x86.ActiveCfg = Release|x86
 		{225B36D4-626F-41DB-BC01-8CD165C66F2A}.Release|x86.Build.0 = Release|x86
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Debug|x64.Build.0 = Debug|Any CPU
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Debug|x86.ActiveCfg = Debug|x86
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Debug|x86.Build.0 = Debug|x86
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Release|x64.ActiveCfg = Release|Any CPU
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Release|x64.Build.0 = Release|Any CPU
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Release|x86.ActiveCfg = Release|Any CPU
+		{8C38B471-97B1-43AF-B82C-41808EF08A24}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

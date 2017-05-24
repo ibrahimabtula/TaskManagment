@@ -1,0 +1,5 @@
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DTO\bin\Debug\Task.DTO.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DTO\bin\Debug\Task.DTO.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DTO\obj\Debug\Task.DTO.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DTO\obj\Debug\Task.DTO.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DTO\obj\Debug\Task.DTO.csprojResolveAssemblyReference.cache

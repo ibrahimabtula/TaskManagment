@@ -1,7 +1,7 @@
 ﻿
 namespace Task.Core
 {
-    public class User
+    public class User : BusinessBase
     {
         public int ID { get; private set; }
         public string FirstName { get; set; }

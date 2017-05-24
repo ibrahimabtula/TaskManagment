@@ -1,0 +1,4 @@
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DTO\bin\x86\Debug\Task.DTO.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DTO\bin\x86\Debug\Task.DTO.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DTO\obj\x86\Debug\Task.DTO.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\Task.DTO\obj\x86\Debug\Task.DTO.pdb

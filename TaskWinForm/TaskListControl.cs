@@ -1,23 +1,23 @@
 ﻿using System;
-using System.Linq;
+using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
-using Task.Service;
+using Task.Core;
 
 namespace TaskWinForm
 {
     public partial class TaskListControl : XtraUserControl
     {
-        private TaskService _taskService;
+        private TaskCollection _taskCollection;
 
         public TaskListControl()
         {
             InitializeComponent();
             InitGridColumns();
 
-            _taskService = new TaskService();
+            _taskCollection = TaskCollection.GetAll();
 
             gvTasks.DoubleClick += GvTasks_DoubleClick;
 
@@ -36,7 +36,14 @@ namespace TaskWinForm
 
             if (task != null)
             {
-                //TODO: Open edit form
+                var taskFull = Task.Core.Task.GetByID(task.ID);
+                using (var frm = new TaskAddEditForm(taskFull))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        //TODO: Update
+                    }
+                }
             }
         }
 
@@ -45,30 +52,31 @@ namespace TaskWinForm
             gvTasks.OptionsView.ColumnAutoWidth = false;
             gvTasks.OptionsBehavior.AutoPopulateColumns = false;
             gvTasks.OptionsBehavior.Editable = false;
+            gvTasks.OptionsView.ShowDetailButtons = false;
 
             #region Grid columns
                        
             var col = new GridColumn();
             col.Visible = true;
-            col.FieldName = "ID";
+            col.FieldName = nameof(Task.Core.Task.ID);
             col.Caption = "ID";
             gvTasks.Columns.Add(col);
 
             col = new GridColumn();
             col.Visible = true;
-            col.FieldName = "CreatedDateTimes";
+            col.FieldName = nameof(Task.Core.Task.CreatedDate);
             col.Caption = "Created date";
             gvTasks.Columns.Add(col);
 
             col = new GridColumn();
             col.Visible = true;
-            col.FieldName = "RequiredByDate";
+            col.FieldName = nameof(Task.Core.Task.RequiredByDate);
             col.Caption = "Required by date";
             gvTasks.Columns.Add(col);
 
             col = new GridColumn();
             col.Visible = true;
-            col.FieldName = "Description";
+            col.FieldName = nameof(Task.Core.Task.Description);
             col.ColumnEdit = new RepositoryItemMemoEdit();
             col.Caption = "Description";
             gvTasks.Columns.Add(col);
@@ -80,7 +88,7 @@ namespace TaskWinForm
         {
             base.OnLoad(e);
 
-            gcTasks.DataSource = _taskService.GetAll().ToList();
+            gcTasks.DataSource = _taskCollection;
 
         }
 

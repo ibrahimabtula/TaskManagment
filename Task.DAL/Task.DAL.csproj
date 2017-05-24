@@ -78,6 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractRepository.cs" />
+    <Compile Include="CommentType\CommentTypeCriteria.cs" />
+    <Compile Include="CommentType\CommentTypeRepository.cs" />
     <Compile Include="Comment\CommentCriteria.cs" />
     <Compile Include="Comment\CommentRepository.cs" />
     <Compile Include="Helpers\ConnectionBuilder.cs" />
@@ -91,9 +93,9 @@
     <Compile Include="Task\TaskRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Task.Core\Task.Core.csproj">
-      <Project>{5947e8f5-0599-4c66-a41b-5c14f6aac8b8}</Project>
-      <Name>Task.Core</Name>
+    <ProjectReference Include="..\Task.DTO\Task.DTO.csproj">
+      <Project>{8c38b471-97b1-43af-b82c-41808ef08a24}</Project>
+      <Name>Task.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

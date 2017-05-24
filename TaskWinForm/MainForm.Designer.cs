@@ -53,7 +53,6 @@
             this.btnAddTask.Size = new System.Drawing.Size(104, 49);
             this.btnAddTask.TabIndex = 3;
             this.btnAddTask.Text = "New Task";
-            this.btnAddTask.Click += new System.EventHandler(this.btnAddTask_Click);
             // 
             // btnAllTask
             // 
