@@ -7,3 +7,6 @@ C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\bin\Debug\Task.DAL.p
 C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\obj\Debug\Task.Service.csprojResolveAssemblyReference.cache
 C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\obj\Debug\Task.Service.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\Task.Service\obj\Debug\Task.Service.pdb
+S:\Ibrahim\Projects\TaskManagment\Task.Service\obj\Debug\Task.Service.csprojResolveAssemblyReference.cache
+S:\Ibrahim\Projects\TaskManagment\Task.Service\obj\Debug\Task.Service.dll
+S:\Ibrahim\Projects\TaskManagment\Task.Service\obj\Debug\Task.Service.pdb

@@ -14,3 +14,12 @@ C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.csproj.GenerateResource.Cache
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.exe
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.pdb
+S:\Ibrahim\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.csprojResolveAssemblyReference.cache
+S:\Ibrahim\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.MainForm.resources
+S:\Ibrahim\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.Properties.Resources.resources
+S:\Ibrahim\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.TaskEditControl.resources
+S:\Ibrahim\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.TaskListControl.resources
+S:\Ibrahim\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.csproj.GenerateResource.Cache
+S:\Ibrahim\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.exe.licenses
+S:\Ibrahim\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.exe
+S:\Ibrahim\Projects\TaskManagment\TaskWinForm\obj\Debug\TaskWinForm.pdb
