@@ -10,6 +10,6 @@ How to change connection string:
 -TaskWinForm project -> App.config
 
 Insctructions:
--Navigation between comments and task and adding new task is performed from top three button
+-Navigation between comments, tasks and adding new task is performed from top buttons
 -Double click on every grid opens corresponding form
 -Deleting comment is performed from "X" button at each comments row
