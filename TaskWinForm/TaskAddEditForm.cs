@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using Task.Core;
+
 
 namespace TaskWinForm
 {
@@ -34,49 +36,21 @@ namespace TaskWinForm
             SetDatabindigs();
         }
 
-        private void GvComments_DoubleClick(object sender, EventArgs e)
-        {
-            var view = sender as GridView;
-            var comment = view.GetRow(view.FocusedRowHandle) as Task.Core.Comment;
-
-            //TODO: Clone before provide to form
-            using (var frm = new CommentAddEditForm(comment))
-            {
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    //TODO: Save comment
-                }
-            }
-        }
-
-        private void TaskAddEditForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (_task.IsDirty)
-            {
-                var result = XtraMessageBox.Show(
-                    this, 
-                    "Save changes?", 
-                    "Task management", 
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes) ;
-                //TODO: Save
-            }
-        }
-
-        private void _task_DirtyStateChanged(object sender)
-        {
-            if (_task.IsDirty)
-                this.Text = TEXT_DIRTY;
-            else
-                this.Text = TEXT;
-        }
-
         private void ConfigUiElements()
         {
-            deCreatedDate.Properties.NullDate = null;
-            deRequiredByDate.Properties.NullDate = null;
+            gvComments.OptionsView.ShowDetailButtons = false;
+
+            deCreatedDate.Properties.NullDate = DateTime.MinValue;
+            deCreatedDate.Properties.NullText = string.Empty;
+
+            deRequiredByDate.Properties.NullDate = DateTime.MinValue;
+            deRequiredByDate.Properties.NullText = string.Empty;
+
+            deReminderDate.Properties.NullDate = null;
+            deReminderDate.Properties.NullText = string.Empty;
+            deReminderDate.ReadOnly = true;
+            //deReminderDate.Enabled = false;
+
             lueStatus.Properties.NullText = string.Empty;
             lueType.Properties.NullText = string.Empty;
 
@@ -109,17 +83,23 @@ namespace TaskWinForm
         }
 
         private void SetDatabindigs()
-        {
-            deCreatedDate.DataBindings.Add("EditValue", _task, nameof(Task.Core.Task.CreatedDate))
+        {            
+            deCreatedDate.DataBindings.Add("EditValue", _task, nameof(Task.Core.Task.CreatedDateNonNullable))
                 .DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
-            deRequiredByDate.DataBindings.Add("EditValue", _task, nameof(Task.Core.Task.RequiredByDate))
+
+            deRequiredByDate.DataBindings.Add("EditValue", _task, nameof(Task.Core.Task.RequiredByDateNonNullable))
+                .DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+
+            deReminderDate.DataBindings.Add("EditValue", _task, nameof(Task.Core.Task.ReminderDate))
                 .DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
 
             meDescription.DataBindings.Add("EditValue", _task, nameof(Task.Core.Task.Description))
                 .DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+
             lueStatus.DataBindings.Add("EditValue", _task, nameof(Task.Core.Task.TaskStatusId))
                 .DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
-            lueType.DataBindings.Add("EditValue", _task, nameof(Task.Core.Task.TaskTypeID))
+
+            lueType.DataBindings.Add("EditValue", _task, nameof(Task.Core.Task.TaskTypeId))
                 .DataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
 
             lueStatus.Properties.DataSource = TaskStatusCollection.GetAll();
@@ -135,6 +115,108 @@ namespace TaskWinForm
             lueType.Properties.DisplayMember = nameof(TaskType.Name);
 
             gcComments.DataSource = _task.Comments;
+        }
+
+        private void GvComments_DoubleClick(object sender, EventArgs e)
+        {
+            var view = sender as GridView;
+            var comment = view.GetRow(view.FocusedRowHandle) as Task.Core.Comment;
+
+            //TODO: Clone before provide to form
+            var cloneComment = (Task.Core.Comment)comment.Clone();
+            using (var frm = new CommentAddEditForm(cloneComment))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    int i = _task.Comments.IndexOf(comment);
+                    _task.Comments[i] = cloneComment;
+                }
+            }
+        }
+
+        private void TaskAddEditForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            btnSave.Focus();
+
+            if (DialogResult == DialogResult.No)
+            {
+                DialogResult = DialogResult.Cancel;
+                return;
+            }
+
+            if (_task.IsDirty)
+            {
+                if (DialogResult == DialogResult.Cancel)
+                {
+                    var result = XtraMessageBox.Show(
+                        this,
+                        "Save changes?",
+                        "Task management",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        DialogResult = DialogResult.OK;
+                        _task.Update();
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        DialogResult = DialogResult.Cancel;
+                        return;
+                    }
+                }
+
+                if (!_task.IsValid())
+                {
+                    XtraMessageBox.Show(
+                        this,
+                        String.Concat(_task.Rules.Select(s => s.Description + Environment.NewLine)),
+                        "Task management",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    e.Cancel = true;
+                }
+                else
+                {
+                    _task.Update();
+                }
+            }           
+        }
+
+        private void _task_DirtyStateChanged(object sender)
+        {
+            if (_task.IsDirty)
+                this.Text = TEXT_DIRTY;
+            else
+                this.Text = TEXT;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btnCansel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.No;
+            Close();
+        }
+
+        private void btnAddComment_Click(object sender, EventArgs e)
+        {
+            var comment = _task.CreateComment();
+
+            using (var frm = new CommentAddEditForm(comment))
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    _task.Comments.Add(comment);
+                    gcComments.RefreshDataSource();
+                }
+            }
         }
     }
 }

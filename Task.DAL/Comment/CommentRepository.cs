@@ -9,7 +9,7 @@ using Task.DTO;
 namespace Task.DAL
 {
     public class CommentRepository
-        //: AbstractRepository<Core.Comment, CommentCollection, CommentCriteria>
+        : ITaskRepository<Task.DTO.CommentDTO, CommentCriteria>
     {
         public Task.DTO.CommentDTO FetchByID(int ID)
         {
@@ -41,46 +41,19 @@ namespace Task.DAL
             }
         }
 
-        public bool Update(Task.DTO.CommentDTO comment)
+        public void Update(Task.DTO.CommentDTO comment)
         {
-            try
-            {
-                using (var connection = ConnectionBuilder.GetOpenedConnection())
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        ExecuteUpdate(comment, transaction);
-                        //TODO:
-                        transaction.Commit();
-                    }
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            TransactionUtil.DoTransactional(t => ExecuteUpdate(comment, t));
         }
 
-        public bool Insert(Task.DTO.CommentDTO comment)
+        public void Insert(Task.DTO.CommentDTO comment)
         {
-            try
-            {
-                using (var connection = ConnectionBuilder.GetOpenedConnection())
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        ExecuteInsert(comment, transaction);
-                        //TODO:
-                        transaction.Commit();
-                    }
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            TransactionUtil.DoTransactional(t=> ExecuteInsert(comment, t));            
+        }
+
+        public void Delete(int ID)
+        {
+            TransactionUtil.DoTransactional(t=>ExecuteDelete(ID, t));
         }
 
         public IEnumerable<Task.DTO.CommentDTO> ExecuteFetch(CommentCriteria criteria, SqlTransaction transaction)
@@ -94,20 +67,40 @@ namespace Task.DAL
 
                 var query = new StringBuilder(@"
 SELECT 
-    [ID]
-    ,[DateAdded]
-    ,[TypeID]
-    ,[ReminderDate]
-    ,[TaskID]
-    ,[Text]
+    Comment.[ID]
+    ,Comment.[DateAdded]
+    ,Comment.[TypeID]
+    ,Comment.[ReminderDate]
+    ,Comment.[TaskID]
+    ,Comment.[Text]
+    ,CommentType.Name AS CommentTypeName
 FROM
     Comment
+    LEFT JOIN CommentType ON CommentType.ID = TypeID
 WHERE 1 = 1");
 
                 if (criteria.TaskID != 0)
                 {
                     query.Append(" AND TaskID = @TaskID");
                     command.Parameters.AddWithValue("TaskID", criteria.TaskID);
+                }
+
+                if (criteria.ReminderDate != null)
+                {
+                    query.Append(" AND Comment.ReminderDate = @ReminderDate");
+                    command.Parameters.AddWithValue("ReminderDate", criteria.ReminderDate);
+                }
+
+                if (criteria.DateAdded != null)
+                {
+                    query.Append(" AND Comment.DateAdded = @DateAdded");
+                    command.Parameters.AddWithValue("DateAdded", criteria.DateAdded);
+                }
+
+                if (criteria.CommentTypeID != 0)
+                {
+                    query.Append(" AND Comment.TypeID = @TypeID");
+                    command.Parameters.AddWithValue("TypeID", criteria.CommentTypeID);
                 }
 
                 command.CommandText = query.ToString();
@@ -119,11 +112,12 @@ WHERE 1 = 1");
                         var comment = new CommentDTO();
 
                         comment.ID = reader.GetInt32(0);
-                        comment.DateAdded = reader.GetDateTime(1);
+                        comment.DateAdded = reader.GetNullabelDateTime(1);
                         comment.CommentTypeID = reader.GetInt32(2);
-                        comment.ReminderDate = reader.GetDateTime(3);
+                        comment.ReminderDate = reader.GetNullabelDateTime(3);
                         comment.TaskID = reader.GetInt32(4);
                         comment.Text = reader.GetString(5);
+                        comment.CommentTypeName = reader.GetString(6);
 
                         comments.Add(comment);
                     }
@@ -153,11 +147,7 @@ WHERE
     ID = @ID";
 
                 command.Parameters.AddWithValue("ID", comment.ID);
-                command.Parameters.AddWithValue("DateAdded", comment.DateAdded);
-                command.Parameters.AddWithValue("TypeID", comment.CommentTypeID);
-                command.Parameters.AddWithValue("ReminderDate", comment.ReminderDate);
-                command.Parameters.AddWithValue("TaskID", comment.TaskID);
-                command.Parameters.AddWithValue("Text", comment.Text);
+                AddParameters(command.Parameters, comment);                
 
                 command.ExecuteNonQuery();
             }
@@ -173,15 +163,15 @@ WHERE
                 command.CommandText = @"
 INSERT INTO Comment
 (
-    ,DateAdded
+    DateAdded
     ,TypeID
     ,ReminderDate
     ,TaskID
     ,Text
 )
-VALUE
+VALUES
 (
-    ,@DateAdded
+    @DateAdded
     ,@TypeID
     ,@ReminderDate
     ,@TaskID
@@ -190,13 +180,42 @@ VALUE
 SELECT @@IDENTITY
 ";
 
-                command.Parameters.AddWithValue("DateAdded", comment.DateAdded);
-                command.Parameters.AddWithValue("TypeID", comment.CommentTypeID);
-                command.Parameters.AddWithValue("ReminderDate", comment.ReminderDate);
-                command.Parameters.AddWithValue("TaskID", comment.TaskID);
-                command.Parameters.AddWithValue("Text", comment.Text);
+                AddParameters(command.Parameters, comment);
 
                 comment.ID = Convert.ToInt32(command.ExecuteScalar());
+            }
+        }
+
+        private void AddParameters(SqlParameterCollection Parameters, CommentDTO comment)
+        {
+            //DateAdded
+            if (comment.DateAdded.HasValue)
+                Parameters.AddWithValue("DateAdded", comment.DateAdded);
+            else
+                Parameters.AddWithValue("DateAdded", DBNull.Value);
+
+            //ReminderDate
+            if (comment.ReminderDate.HasValue)
+                Parameters.AddWithValue("ReminderDate", comment.ReminderDate);
+            else
+                Parameters.AddWithValue("ReminderDate", DBNull.Value);
+
+            Parameters.AddWithValue("TypeID", comment.CommentTypeID);
+            Parameters.AddWithValue("TaskID", comment.TaskID);
+            Parameters.AddWithValue("Text", comment.Text);
+        }
+
+        public void ExecuteDelete(int ID, SqlTransaction transaction)
+        {
+            using (var command = transaction.Connection.CreateCommand())
+            {
+                command.Transaction = transaction;
+                command.CommandType = CommandType.Text;
+
+                command.CommandText = @"DELETE FROM Comment Where ID = @ID";
+                command.Parameters.AddWithValue("ID", ID);
+
+                command.ExecuteNonQuery();
             }
         }
     }

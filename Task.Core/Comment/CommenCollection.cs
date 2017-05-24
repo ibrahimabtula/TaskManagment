@@ -15,7 +15,7 @@ namespace Task.Core
 
             foreach (DTO.CommentDTO commentDto in commentsDTO)
             {
-                var comment = Comment.CopyFromDTO(commentDto);
+                var comment = Comment.CreateCommentFromDTO(commentDto);
                 comment.MarkOld();
                 comments.Add(comment);
             }

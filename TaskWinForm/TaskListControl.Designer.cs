@@ -38,12 +38,12 @@
             this.gvTasks.GridControl = this.gcTasks;
             this.gvTasks.Name = "gvTasks";
             // 
-            // TaskListControl
+            // TaskListControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gcTasks);
-            this.Name = "TaskListControl";
+            this.Name = "TaskListControl2";
             this.Size = new System.Drawing.Size(571, 404);
             ((System.ComponentModel.ISupportInitialize)(this.gcTasks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTasks)).EndInit();

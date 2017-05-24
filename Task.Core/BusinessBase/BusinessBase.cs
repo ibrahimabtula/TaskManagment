@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -12,21 +13,28 @@ namespace Task.Core
         public event DirtyStateChangedEventHandler DirtyStateChanged;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public RulesCollection Rules { get; set; }
 
         public BusinessBase()
         {
             MarkNew();
+            Rules = new RulesCollection();
         }
 
         public bool IsNew { get; private set; }
         public bool IsDeleted { get; private set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
 
         public bool IsDirty
         {
             get { return _isDirty; }
             set
             {
-                if(_isDirty == value) return;
+                //if(_isDirty == value) return;
                 _isDirty = value;
                 OnDirtyStateChanged();
             }

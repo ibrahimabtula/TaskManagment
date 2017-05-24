@@ -77,13 +77,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractRepository.cs" />
     <Compile Include="CommentType\CommentTypeCriteria.cs" />
     <Compile Include="CommentType\CommentTypeRepository.cs" />
     <Compile Include="Comment\CommentCriteria.cs" />
     <Compile Include="Comment\CommentRepository.cs" />
     <Compile Include="Helpers\ConnectionBuilder.cs" />
+    <Compile Include="Helpers\ExtensionMethods.cs" />
+    <Compile Include="Helpers\TransactionUtil.cs" />
     <Compile Include="ICriteria.cs" />
+    <Compile Include="ITaskRepository.cs" />
     <Compile Include="TaskStatus\TaskStatusCriteria.cs" />
     <Compile Include="TaskStatus\TaskStatusRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

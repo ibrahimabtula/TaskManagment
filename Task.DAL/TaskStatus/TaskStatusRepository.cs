@@ -8,8 +8,8 @@ using Task.DTO;
 
 namespace Task.DAL
 {
-    public class TaskStatusRepository 
-        //: AbstractRepository<Task.Core.TaskStatus,BusinessCollectionBase<TaskStatus>, TaskStatusCriteria>
+    public class TaskStatusRepository
+       : ITaskRepository<TaskStatusDTO, TaskStatusCriteria>
     {
         public Task.DTO.TaskStatusDTO FetchByID(int ID)
         {
@@ -36,12 +36,17 @@ namespace Task.DAL
             }
         }
 
-        public bool Update(Task.DTO.TaskStatusDTO task)
+        public void Update(Task.DTO.TaskStatusDTO task)
         {
             throw new NotImplementedException();
         }
 
-        public bool Insert(Task.DTO.TaskStatusDTO task)
+        public void Insert(Task.DTO.TaskStatusDTO task)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int ID)
         {
             throw new NotImplementedException();
         }

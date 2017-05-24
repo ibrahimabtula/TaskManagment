@@ -140,6 +140,12 @@
     <Compile Include="TaskAddEditForm.Designer.cs">
       <DependentUpon>TaskAddEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommentsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommentsControl.Designer.cs">
+      <DependentUpon>CommentsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="TaskListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </Compile>
     <EmbeddedResource Include="CommentAddEditForm.resx">
       <DependentUpon>CommentAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommentsControl.resx">
+      <DependentUpon>CommentsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -165,9 +174,6 @@
     </Compile>
     <EmbeddedResource Include="TaskAddEditForm.resx">
       <DependentUpon>TaskAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TaskListControl.resx">
-      <DependentUpon>TaskListControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -190,6 +196,10 @@
     <ProjectReference Include="..\Task.DAL\Task.DAL.csproj">
       <Project>{3272c8fa-58c9-4f77-9f12-bc04e55358c3}</Project>
       <Name>Task.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Task.DTO\Task.DTO.csproj">
+      <Project>{8c38b471-97b1-43af-b82c-41808ef08a24}</Project>
+      <Name>Task.DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

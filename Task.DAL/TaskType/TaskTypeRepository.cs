@@ -7,7 +7,8 @@ using Task.DTO;
 
 namespace Task.DAL
 {
-    public class TaskTypeRepository : ITaskRepository<TaskTypeDTO, TaskTypeCriteria>  
+    public class TaskTypeRepository 
+        : ITaskRepository<TaskTypeDTO, TaskTypeCriteria>  
     {
         public Task.DTO.TaskTypeDTO FetchByID(int ID)
         {
@@ -16,30 +17,27 @@ namespace Task.DAL
 
         public IEnumerable<Task.DTO.TaskTypeDTO> FetchAll(TaskTypeCriteria criteria)
         {
-            try
+            IEnumerable<Task.DTO.TaskTypeDTO> result = null;
+
+            TransactionUtil.DoTransactional(t =>
             {
-                using (var connection = ConnectionBuilder.GetOpenedConnection())
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        var result = ExecuteFetch(criteria, transaction);
-                        transaction.Commit();
-                        return result;
-                    }
-                }
-            }
-            catch
-            {
-                return null;
-            }
+                result = ExecuteFetch(criteria, t);
+            });
+
+            return result;
         }
 
-        public bool Update(Task.DTO.TaskTypeDTO task)
+        public void Update(Task.DTO.TaskTypeDTO task)
         {
             throw new NotImplementedException();
         }
 
-        public bool Insert(Task.DTO.TaskTypeDTO task)
+        public void Insert(Task.DTO.TaskTypeDTO task)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int ID)
         {
             throw new NotImplementedException();
         }

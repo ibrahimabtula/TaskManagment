@@ -77,6 +77,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessBase\BusinesRule.cs" />
+    <Compile Include="BusinessBase\RulesCollection.cs" />
     <Compile Include="CommentType\CommentType.cs" />
     <Compile Include="CommentType\CommentTypeCollection.cs" />
     <Compile Include="Comment\CommenCollection.cs" />

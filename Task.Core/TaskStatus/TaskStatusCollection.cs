@@ -1,5 +1,6 @@
 ﻿
 using Task.DAL;
+using Task.DTO;
 
 namespace Task.Core
 {
@@ -8,7 +9,7 @@ namespace Task.Core
 
         public static TaskStatusCollection GetAll()
         {
-            var repository = new TaskStatusRepository();
+            ITaskRepository<TaskStatusDTO, TaskStatusCriteria> repository = new TaskStatusRepository();
             var collection = new TaskStatusCollection();
 
             var colletionDTO = repository.FetchAll(new TaskStatusCriteria());

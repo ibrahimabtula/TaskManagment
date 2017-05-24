@@ -8,7 +8,7 @@ using Task.DTO;
 namespace Task.DAL
 {
     public class CommentTypeRepository
-    //: AbstractRepository<Core.TaskType, BusinessCollectionBase<TaskType>, TaskTypeCriteria>
+        : ITaskRepository<CommentTypeDTO, CommentTypeCriteria>
     {
         public Task.DTO.CommentTypeDTO FetchByID(int ID)
         {
@@ -17,30 +17,25 @@ namespace Task.DAL
 
         public IEnumerable<Task.DTO.CommentTypeDTO> FetchAll(CommentTypeCriteria criteria)
         {
-            try
+            IEnumerable<Task.DTO.CommentTypeDTO> result = null;
+            TransactionUtil.DoTransactional(t =>
             {
-                using (var connection = ConnectionBuilder.GetOpenedConnection())
-                {
-                    using (var transaction = connection.BeginTransaction())
-                    {
-                        var result = ExecuteFetch(criteria, transaction);
-                        transaction.Commit();
-                        return result;
-                    }
-                }
-            }
-            catch
-            {
-                return null;
-            }
+                result = ExecuteFetch(criteria, t);
+            });
+            return result;
         }
 
-        public bool Update(Task.DTO.CommentTypeDTO task)
+        public void Update(Task.DTO.CommentTypeDTO task)
         {
             throw new NotImplementedException();
         }
 
-        public bool Insert(Task.DTO.CommentTypeDTO task)
+        public void Insert(Task.DTO.CommentTypeDTO task)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(int ID)
         {
             throw new NotImplementedException();
         }

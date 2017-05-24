@@ -79,10 +79,9 @@ namespace Task.Core
             T typedSender = (T)sender;
             int i = Items.IndexOf(typedSender);
 
-            if (i < 0)
-                throw new ArgumentException("Received property notification from item not in collection");
-
-            OnItemPropertyChanged(i, e);
+            if (i >= 0)
+                //throw new ArgumentException("Received property notification from item not in collection");
+                OnItemPropertyChanged(i, e);
         }
     }
 

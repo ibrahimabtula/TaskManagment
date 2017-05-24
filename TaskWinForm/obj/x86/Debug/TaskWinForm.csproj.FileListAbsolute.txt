@@ -11,6 +11,7 @@ C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpr
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.XtraGrid.v17.1.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\Task.Core.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\Task.DAL.dll
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\Task.DTO.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.Pdf.v17.1.Core.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.XtraTreeList.v17.1.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.XtraRichEdit.v17.1.dll
@@ -22,6 +23,7 @@ C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpr
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.Office.v17.1.Core.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\Task.Core.pdb
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\Task.DAL.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\Task.DTO.pdb
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.Data.v17.1.xml
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.Printing.v17.1.Core.xml
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.Utils.v17.1.xml
@@ -38,14 +40,6 @@ C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpr
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.Sparkline.v17.1.Core.xml
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.RichEdit.v17.1.Core.xml
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\DevExpress.Office.v17.1.Core.xml
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.csprojResolveAssemblyReference.cache
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.MainForm.resources
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.Properties.Resources.resources
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.TaskListControl.resources
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.csproj.GenerateResource.Cache
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.exe.licenses
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.exe
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.pdb
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\de\DevExpress.Printing.v17.1.Core.resources.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\es\DevExpress.Printing.v17.1.Core.resources.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\ja\DevExpress.Printing.v17.1.Core.resources.dll
@@ -78,7 +72,13 @@ C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\de\DevE
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\es\DevExpress.Office.v17.1.Core.resources.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\ja\DevExpress.Office.v17.1.Core.resources.dll
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\ru\DevExpress.Office.v17.1.Core.resources.dll
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\Task.DTO.dll
-C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\bin\x86\Debug\Task.DTO.pdb
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.csprojResolveAssemblyReference.cache
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.CommentAddEditForm.resources
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.MainForm.resources
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.Properties.Resources.resources
 C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.TaskAddEditForm.resources
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.CommentsControl.resources
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.csproj.GenerateResource.Cache
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.exe.licenses
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.exe
+C:\Users\ibra\Documents\Projects\TaskManagment\TaskWinForm\obj\x86\Debug\TaskWinForm.pdb

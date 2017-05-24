@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using Task.DAL;
 using Task.DTO;
 
@@ -17,13 +18,12 @@ namespace Task.Core
         private int _taslTypeId;
         private IEnumerable<User> _assignedUsers;
         private CommentCollection _comments;
-        private TaskRepository _taskRepository;
         #endregion//Private fields
 
         #region Constructors
         public Task()
-        {         
-            _taskRepository = new TaskRepository();;   
+        {
+            _comments = new CommentCollection();
         }
         #endregion//Costructors
 
@@ -41,10 +41,20 @@ namespace Task.Core
         public CommentCollection Comments
         {
             get { return _comments; }
-            set { _comments = value; }
+            set
+            {
+                if (_comments != null)
+                    _comments.CollectionChanged -= _comments_CollectionChanged;
+
+                _comments = value;
+
+                if (_comments != null)
+                    _comments.CollectionChanged += _comments_CollectionChanged;
+
+            }
         }
 
-        public int TaskTypeID
+        public int TaskTypeId
         {
             get { return _taslTypeId; }
             set
@@ -92,6 +102,20 @@ namespace Task.Core
             }
         }
 
+        public DateTime? ReminderDate { get; set; }
+
+        public DateTime RequiredByDateNonNullable
+        {
+            get { return _requiredDate.HasValue ? _requiredDate.Value : DateTime.MinValue; }
+            set { RequiredByDate = value; }
+        }
+
+        public DateTime CreatedDateNonNullable
+        {
+            get { return _createdDate.HasValue ? _createdDate.Value : DateTime.MinValue; }
+            set { CreatedDate = value; }
+        }
+
         public DateTime? CreatedDate
         {
             get { return _createdDate; }
@@ -112,6 +136,71 @@ namespace Task.Core
 
         #endregion//Public properties
 
+        #region Public methods
+
+        public Comment CreateComment()
+        {
+            return new Comment()
+            {
+                TaskID = _id
+            };
+        }
+
+        public void Update()
+        {
+            if (!IsDirty) return;
+            if(!IsValid()) return;
+
+            var _taskRepository = new TaskRepository();
+
+            var dto = CreateDTOFromTask(this);
+
+            TransactionUtil.DoTransactional(t =>
+            {
+                if (IsDeleted)
+                {
+                    foreach (Comment comment in Comments)
+                    {
+                        comment.MarkDeleted();
+                        comment.Update(t);
+                    }
+
+                    _taskRepository.ExecuteDelete(dto.ID, t);
+                }
+                else
+                {
+                    if (IsNew)
+                        _taskRepository.ExecuteInsert(dto, t);
+                    else
+                        _taskRepository.ExecuteUpdate(dto, t);
+                }
+
+                foreach (Comment comment in Comments)
+                    comment.Update(t);
+            });
+        }
+
+        public bool IsValid()
+        {
+            Rules.Clear();
+
+            if (_taslTypeId == 0) 
+                Rules.Add(new BusinesRule(nameof(Task.TaskTypeId), "Task type is required!"));
+            if (_taskStatusId == 0)
+                Rules.Add(new BusinesRule(nameof(Task.TaskStatusId), "Task status is required!"));
+
+            foreach (Comment comment in Comments)
+            {
+                if (!comment.IsValid())
+                    return false;
+
+            }
+
+            return Rules.Count == 0;
+        }
+
+        #endregion//Public methods
+
         #region Static methods
         public static Task GetByID(int ID)
         {
@@ -119,28 +208,60 @@ namespace Task.Core
 
             var taskDTO = repository.FetchByID(ID);
 
-            var task = CopyFromDTO(taskDTO);
+            var task = CreateTaskFromDTO(taskDTO);
 
-            task._comments = CommentCollection.GetByTaskID(task.ID);
+            task.Comments = CommentCollection.GetByTaskID(task.ID);
 
             task.MarkOld();
 
             return task;
         }
 
-        public static Task CopyFromDTO(TaskDTO taskDTO)
+        private void _comments_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add ||
+                e.Action == NotifyCollectionChangedAction.Remove ||
+                e.Action == NotifyCollectionChangedAction.Replace)
+            {
+                MarkDirty();
+            }
+        }
+
+        public static Task CreateTaskFromDTO(TaskDTO TaskDTO)
         {
             var task = new Task();
 
-            task._id = taskDTO.ID;
-            task._createdDate = taskDTO.CreatedDate;
-            task._requiredDate = taskDTO.RequiredByDate;
-            task._description = taskDTO.Description;
-            task._taskStatusId = taskDTO.TaskStatusId;
-            task._taslTypeId = taskDTO.TaskTypeID;
+            task._id = TaskDTO.ID;
+            task._createdDate = TaskDTO.CreatedDate;
+            task._requiredDate = TaskDTO.RequiredByDate;
+            task._description = TaskDTO.Description;
+            task._taskStatusId = TaskDTO.TaskStatusId;
+            task._taslTypeId = TaskDTO.TaskTypeID;
+            task.ReminderDate = TaskDTO.ReminderDate;
 
             return task;
         }
+
+        public static TaskDTO CreateDTOFromTask(Task Task)
+        {
+            var dto = new TaskDTO();
+
+            dto.ID = Task._id;
+            dto.CreatedDate = Task._createdDate;
+            dto.RequiredByDate = Task._requiredDate;
+            dto.TaskStatusId = Task._taskStatusId;
+            dto.TaskTypeID = Task._taslTypeId;
+            dto.Description = Task._description;
+            dto.ReminderDate = Task.ReminderDate;
+
+            return dto;
+        }
         #endregion//Static methods
+
+        ~Task()
+        {
+            if (_comments != null)
+                _comments.CollectionChanged -= _comments_CollectionChanged;
+        }
     }
 }
