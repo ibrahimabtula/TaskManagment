@@ -1,7 +1,7 @@
 Server:MS SQL Server 12.0.2
 Database: TaskDB
 IDE: Visual Studio 2015 Comunity
-Targeted .Net Frameword: 4.5
+Targeted .Net Framework: 4.5
 
 Backup of the database is located in the root directiory of project with name TaskDB.bak
 
