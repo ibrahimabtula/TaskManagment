@@ -81,7 +81,6 @@ FROM
     Task
     LEFT JOIN TaskStatus ON TaskStatus.ID = StatusID
     LEFT JOIN TaskType ON TaskType.ID = TypeID
-    LEFT JOIN Comment ON Comment.TaskID = Task.ID
     LEFT JOIN
 	(	
 		SELECT MAX(TaskID) AS TaskID, ReminderDate 
