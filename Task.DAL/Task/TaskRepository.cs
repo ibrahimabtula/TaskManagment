@@ -83,10 +83,10 @@ FROM
     LEFT JOIN TaskType ON TaskType.ID = TypeID
     LEFT JOIN
 	(	
-		SELECT MAX(TaskID) AS TaskID, ReminderDate 
+		SELECT TaskID , MAX(ReminderDate) AS ReminderDate
 		FROM Comment 
 		WHERE ReminderDate IS NOT NULL
-		GROUP BY ReminderDate
+		GROUP BY TaskID
 	) AS Max_Comment ON Max_Comment.TaskID = Task.ID
 WHERE 1 = 1");
 
